@@ -1,6 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../../styles/component/Header.module.scss";
+import { signIn, signOut, useSession } from "next-auth/client";
+import { useRouter } from "next/router";
+
 //react -icons/
 import { IoLocationOutline } from "react-icons/io5";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -8,21 +11,21 @@ import { RiArrowDropDownFill } from "react-icons/ri";
 import { FiShoppingCart, FiMenu } from "react-icons/fi";
 
 const Header = () => {
+  const [session] = useSession();
+  const router = useRouter();
   return (
     <header className={styles.header}>
       {/* nav top */}
       <div className={styles.header_top}>
         {/* top left part */}
         <div className={styles.left}>
-          <div className={styles.image_logo}>
-            <Link href="/">
-              <Image
-                src="/assets/images/logo.png"
-                width={130}
-                height={40}
-                objectFit="initial"
-              />
-            </Link>
+          <div className={styles.image_logo} onClick={() => router.push("/")}>
+            <Image
+              src="/assets/images/logo.png"
+              width={130}
+              height={40}
+              objectFit="initial"
+            />
           </div>
           <div className={styles.location_container}>
             <IoLocationOutline className={styles.icon} />
@@ -65,8 +68,11 @@ const Header = () => {
             />
             <RiArrowDropDownFill className={styles.icon} />
           </div>
-          <div className={styles.right_div2}>
-            <div>Hello,Sign in</div>
+          <div
+            className={styles.right_div2}
+            onClick={!session ? signIn : signOut}
+          >
+            <div> {session ? `Hello ${session.user.name}` : `Sign in`}</div>
             <div>
               <h4>Account & List</h4>{" "}
               <RiArrowDropDownFill className={styles.icon} />{" "}
@@ -78,7 +84,10 @@ const Header = () => {
               <h4>&Orders</h4>
             </div>
           </div>
-          <div className={styles.right_div4}>
+          <div
+            className={styles.right_div4}
+            onClick={() => router.push("/checkout")}
+          >
             <FiShoppingCart className={styles.icon} />
             <h4>Cart</h4>
           </div>
