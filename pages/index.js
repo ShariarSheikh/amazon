@@ -3,8 +3,9 @@ import styles from "../styles/pages/Home.module.scss";
 import Header from "../components/Header/Header";
 import TopBanner from "../components/TopBanner/TopBanner";
 import ProductsFeed from "../components/ProductsFeed/ProductsFeed";
+import Footer from "../components/Footer/Footer";
 
-const index = ({products}) => {
+const index = ({ products }) => {
   return (
     <>
       <Head>
@@ -18,10 +19,11 @@ const index = ({products}) => {
       </Head>
       {/* header */}
       <Header />
-      <main className={styles.home}>
+      <main className={styles.home} id="top">
         <TopBanner />
-        <ProductsFeed products={products}/>
+        <ProductsFeed products={products} />
       </main>
+      <Footer />
     </>
   );
 };

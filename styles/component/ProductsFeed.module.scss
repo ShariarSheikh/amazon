@@ -1,9 +1,12 @@
-.ProductsFeed{
-    margin-top: -317px;
-    width: 100%;
-    z-index: 1000;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
+.ProductsFeed {
+  margin-top: -317px;
+  width: 100%;
+  z-index: 1000;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  .prime_banner {
+    margin-bottom: 20px !important;
+    margin-left: 20px !important;
+  }
 }
