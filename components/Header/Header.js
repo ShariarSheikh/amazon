@@ -20,7 +20,7 @@ const Header = () => {
                 src="/assets/images/logo.png"
                 width={130}
                 height={40}
-                objectFit="contain"
+                objectFit="initial"
               />
             </Link>
           </div>
@@ -37,9 +37,7 @@ const Header = () => {
           <div className={styles.search_container}>
             <div className={styles.search_container_left}>
               <select defaultValue="all" name="items" id="items">
-                <option value="all">
-                  All
-                </option>
+                <option value="all">All</option>
                 <option value="arts">Arts</option>
                 <option value="baby">Baby</option>
                 <option value="books">Books</option>
@@ -90,7 +88,12 @@ const Header = () => {
       {/* nav bottom */}
       <div className={styles.header_bottom}>
         <div className={styles.nav_links_container}>
-          <Link href="/"><a><FiMenu className={styles.icon} />All</a></Link>
+          <Link href="/">
+            <a>
+              <FiMenu className={styles.icon} />
+              All
+            </a>
+          </Link>
           <Link href="/">Today's deals</Link>
           <Link href="/">Customer Service</Link>
           <Link href="/">Gift Cards</Link>
