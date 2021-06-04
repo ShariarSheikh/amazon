@@ -1,13 +1,22 @@
+import { Grid } from "@material-ui/core";
 import styles from "../../styles/component/ProductsFeed.module.scss";
+import Product from "../Product/Product";
 
 const ProductsFeed = ({ products }) => {
   return (
-    <div className={styles.ProductsFeed}>
-      <h1>hello world</h1>
-      {products.map(({ id, title, description, price, category, image })=> (
-          <p>{title}</p>
+    <Grid container className={styles.ProductsFeed}>
+      {products.map(({ id, title, description, price, category, image }) => (
+        <Product
+          id={id}
+          title={title}
+          description={description}
+          price={price}
+          category={category}
+          image={image}
+          key={id}
+        />
       ))}
-    </div>
+    </Grid>
   );
 };
 
