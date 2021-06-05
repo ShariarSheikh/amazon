@@ -3,16 +3,20 @@ import Link from "next/link";
 import styles from "../../styles/component/Header.module.scss";
 import { signIn, signOut, useSession } from "next-auth/client";
 import { useRouter } from "next/router";
-
+import { useSelector } from "react-redux";
+import { selectItems } from "../../redux/slices/cartSlice";
+import { Badge } from "@material-ui/core";
 //react -icons/
 import { IoLocationOutline } from "react-icons/io5";
 import { AiOutlineSearch } from "react-icons/ai";
 import { RiArrowDropDownFill } from "react-icons/ri";
 import { FiShoppingCart, FiMenu } from "react-icons/fi";
 
+
 const Header = () => {
   const [session] = useSession();
   const router = useRouter();
+  const items = useSelector(selectItems);
   return (
     <header className={styles.header}>
       {/* nav top */}
@@ -88,7 +92,9 @@ const Header = () => {
             className={styles.right_div4}
             onClick={() => router.push("/checkout")}
           >
-            <FiShoppingCart className={styles.icon} />
+            <Badge badgeContent={items.length} color="primary">
+              <FiShoppingCart className={styles.icon} />
+            </Badge>
             <h4>Cart</h4>
           </div>
         </div>

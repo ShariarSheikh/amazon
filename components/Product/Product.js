@@ -3,6 +3,8 @@ import styles from "../../styles/component/Product.module.scss";
 import { AiFillStar } from "react-icons/ai";
 import { useState } from "react";
 import { Grid } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/slices/cartSlice";
 
 const MAX_RATE = 5;
 const MIN_RATE = 4;
@@ -19,7 +21,20 @@ const Product = ({
   const [rating] = useState(
     Math.floor(Math.random() * (MAX_RATE - MIN_RATE + 1)) + MIN_RATE
   );
+  const dispatch = useDispatch()
 
+  const addItemToCart =()=>{
+
+    const product = {
+      id,
+      title,
+      description,
+      price,
+      category,
+      image,
+    }
+    dispatch(addToCart(product))  
+  }
   return (
     <Grid item className={bigSizes ? styles.product_bigSize : styles.product}>
       <p className={styles.category_text}>{category}</p>
@@ -44,8 +59,8 @@ const Product = ({
       <div>
         <p className={styles.price_text}>${price}</p>
       </div>
-      <div>
-        <button className={styles.add_to_cart}>Add to cart</button>
+      <div onClick={addItemToCart}>
+        <button className={styles.add_to_cart} >Add to cart</button>
       </div>
     </Grid>
   );

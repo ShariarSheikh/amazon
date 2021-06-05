@@ -32,7 +32,7 @@ export default index;
 
 // https://fakestoreapi.com/products
 
-export async function getServerSideProps() {
+export async function getServerSideProps(context) {
   const products = await fetch(`https://fakestoreapi.com/products`)
     .then((res) => res.json())
     .catch((err) => console.log(err));

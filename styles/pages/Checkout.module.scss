@@ -1,6 +1,95 @@
-.checkout{
+.checkout {
+  min-width: 998px;
+  padding: 14px 18px 18px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+  min-height: 400px;
 
-    h1{
-        color:black;
+  .checkout_items_container {
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    margin-top: 15px;
+    .checkout_header_container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0px;
+      border-bottom: 0.1px solid #dcdcdc;
+      h1 {
+        font-weight: 400;
+        font-size: 28px;
+        line-height: 36px;
+      }
+      p {
+        font-size: 14px;
+        color: #565959;
+        align-self: flex-end;
+      }
     }
+    .checkout_items_container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .checkout_total_price_container {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-end;
+      padding: 14px 0px;
+    }
+  }
+
+  .process_order_container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    min-width: 300px;
+    .process_order {
+      background-color: white;
+      margin-bottom: 20px;
+      padding: 20px 15px 15px 15px;
+      p {
+        font-size: 18px;
+        font-weight: 500;
+      }
+      div {
+        display: flex;
+        align-items: center;
+        margin-top: 4px;
+        margin-bottom: 15px;
+        input {
+        }
+        span {
+          margin-left: 5px;
+          font-size: 13px;
+        }
+      }
+      button {
+        width: 100%;
+        background-color: #ffd814;
+        outline: transparent;
+        border: transparent;
+        border-color: #fcd200;
+        padding: 9px 0px;
+        border-radius: 7px;
+        box-shadow: 0px 2px 4px 0px #dadada;
+        cursor: pointer;
+        &:hover {
+          background-color: #eec704;
+        }
+      }
+    }
+
+    .relative_items_container {
+      background-color: white;
+    }
+  }
 }
