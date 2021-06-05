@@ -9,10 +9,27 @@ export const cartSlice = createSlice({
   initialState,
 
   reducers: {
+    //add items
     addToCart: (state, action) => {
-      state.items = [...state.items, action.payload]
+      state.items = [...state.items, action.payload];
     },
-    removeFromCart: (state, action) => {},
+    //remove items
+    removeFromCart: (state, action) => {
+      const index = state.items.findIndex(
+        (cartItems) => cartItems.id === action.payload.id
+      );
+      let newCartItems = [...state.items];
+
+      if (index >= 0) {
+        newCartItems.splice(index, 1);
+      } else {
+        console.warn(
+          `Cant remove product (id: ${action.payload.id}) as its not cart`
+        );
+      }
+      //...
+      state.items = newCartItems;
+    },
   },
 });
 

@@ -21,10 +21,9 @@ const Product = ({
   const [rating] = useState(
     Math.floor(Math.random() * (MAX_RATE - MIN_RATE + 1)) + MIN_RATE
   );
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const addItemToCart =()=>{
-
+  const addItemToCart = () => {
     const product = {
       id,
       title,
@@ -32,9 +31,9 @@ const Product = ({
       price,
       category,
       image,
-    }
-    dispatch(addToCart(product))  
-  }
+    };
+    dispatch(addToCart(product));
+  };
   return (
     <Grid item className={bigSizes ? styles.product_bigSize : styles.product}>
       <p className={styles.category_text}>{category}</p>
@@ -60,7 +59,7 @@ const Product = ({
         <p className={styles.price_text}>${price}</p>
       </div>
       <div onClick={addItemToCart}>
-        <button className={styles.add_to_cart} >Add to cart</button>
+        <button className={styles.add_to_cart}>Add to cart</button>
       </div>
     </Grid>
   );

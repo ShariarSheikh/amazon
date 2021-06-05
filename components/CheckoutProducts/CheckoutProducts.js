@@ -1,4 +1,10 @@
 import Image from "next/image";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  addToCart,
+  removeFromCart,
+  selectItems,
+} from "../../redux/slices/cartSlice";
 import styles from "../../styles/component/CheckoutProducts.module.scss";
 
 const CheckoutProducts = ({
@@ -9,6 +15,16 @@ const CheckoutProducts = ({
   image,
   id,
 }) => {
+  const dispatch = useDispatch();
+  const items = useSelector(selectItems);
+
+  const addItemToCart = () => {
+    dispatch(addToCart);
+  };
+  const removeItemFromCart = () => {
+    dispatch(removeFromCart({ id }));
+  };
+
   return (
     <>
       <div className={styles.checkout_items}>
@@ -24,30 +40,39 @@ const CheckoutProducts = ({
         <div className={styles.items_info_container}>
           <ul>
             <li className={styles.first_line}>
-              {title} <b>${price}</b>
+              <div className={styles.description_text}>{description}</div>{" "}
             </li>
             <li className={styles.in_stock_li}>In Stock</li>
             <li>
-              <input type="checkbox" name="" id="" />
+              <input
+                type="checkbox"
+                name=""
+                className={styles.checkbox_input}
+              />
               <span>
-                This is gift <span>Learn more</span>
+                This is gift{" "}
+                <span className={styles.learn_more}>Learn more</span>
               </span>
             </li>
             <div className={styles.actions_div}>
               <div>
-                <select defaultValue="1" name="items" className={styles.select_items}>
-                  <option value="1">1</option>
-                  <option value="2">2</option>
-                  <option value="3">3</option>
-                  <option value="4">4</option>
-                </select>
+                <button
+                  onClick={addItemToCart}
+                  className={styles.addItemToCart_btn}
+                >
+                  Add
+                </button>
               </div>
               <div className={styles.bracket}>|</div>
-              <button>Delete</button>
+              <button onClick={removeItemFromCart}>Delete</button>
               <div className={styles.bracket}>|</div>
               <button>Save for later</button>
             </div>
           </ul>
+        </div>
+        {/* items price */}
+        <div className={styles.item_price}>
+          <b>${price}</b>
         </div>
       </div>
     </>

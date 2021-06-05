@@ -9,7 +9,7 @@ import styles from "../../styles/pages/Checkout.module.scss";
 
 const Checkout = () => {
   const items = useSelector(selectItems);
-  console.log(items);
+  const totalPrice = items.reduce((total, prd) => total + prd.price, 0);
   return (
     <>
       <Head>
@@ -39,25 +39,27 @@ const Checkout = () => {
               <p>Price</p>
             </div>
             <div className={styles.checkout_items_container}>
-              {items.map(
-                ({ category, description, price, title, image, id }) => (
+              {items.map((item,i) => (
                   <CheckoutProducts
-                    category={category}
-                    description={description}
-                    price={price}
-                    title={title}
-                    image={image}
-                    id={id}
-                    key={id}
+                    category={item.category}
+                    description={item.description}
+                    price={item.price}
+                    title={item.title}
+                    image={item.image}
+                    id={item.id}
+                    key={i}
                   />
                 )
               )}
             </div>
 
             <div className={styles.checkout_total_price_container}>
-              <span>
-                Subtotal (2 items): <b>$430.00</b>{" "}
-              </span>
+              {items.length > 0 && (
+                <span>
+                  Subtotal ({items.length} items):
+                  <b>${totalPrice.toFixed(2)}</b>
+                </span>
+              )}
             </div>
           </Grid>
           {/* right container */}
@@ -72,7 +74,7 @@ const Checkout = () => {
           >
             <div className={styles.process_order}>
               <p>
-                Subtotal (1 item): <b>$79.00</b>{" "}
+                Subtotal ({items.length}): <b>${totalPrice.toFixed(2)}</b>{" "}
               </p>
               <div>
                 <input type="checkbox" name="" id="" />{" "}
